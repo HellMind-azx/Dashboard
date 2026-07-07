@@ -24,7 +24,15 @@ function renderSidebar(tabs) {
         </button>
         `).join('');
 
-  sidebar.innerHTML = tabsBtns;
+  sidebar.innerHTML = `
+    <button class="sidebar-toggle-btn" type="button" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="sidebar-nav">
+        ${tabsBtns}
+    </div>
+  `;
 }
 
 function renderLessons() {
