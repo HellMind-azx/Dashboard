@@ -1,0 +1,444 @@
+/* Макет страницы Профиля (Основная часть + Сайдбар) */
+.profile-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.page-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+.edit-profile-btn {
+    background-color: transparent;
+    border: 1px solid #1e3799; /* Синий премиальный акцент */
+    color: #3498db;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.edit-profile-btn:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.profile-page-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    align-items: start;
+}
+
+.profile-main-content, .profile-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Общая карточка */
+.profile-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.sidebar-padding {
+    padding: 20px;
+}
+
+/* Главная инфо-карточка студента */
+.student-main-info {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 30px;
+    align-items: center;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.student-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+}
+
+.change-avatar-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.student-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.student-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.student-badge {
+    background-color: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    width: max-content;
+    margin-bottom: 8px;
+}
+
+.student-contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.student-academic-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 1px solid var(--border-color);
+    padding-left: 30px;
+    min-width: 260px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.detail-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.detail-value {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.s-active {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+/* Сетки и заголовки секций внутри карт */
+.profile-middle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.card-section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+.text-blue-line { border-left: 3px solid #3498db; }
+.text-green-line { border-left: 3px solid #2ecc71; }
+
+/* Круговая диаграмма успеваемости */
+.academic-overview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gpa-chart-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.gpa-donut-chart {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: conic-gradient(#2ecc71 0% 50%, #3498db 50% 80%, #e67e22 80% 95%, #f1c40f 95% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gpa-chart-center {
+    width: 82px;
+    height: 82px;
+    background-color: var(--bg-card);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gpa-num { font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
+.gpa-lbl { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; }
+
+.gpa-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.gpa-leg-item {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+}
+
+.gpa-leg-val { margin-left: auto; color: var(--text-main); font-weight: 600; }
+
+/* Нижние ячейки под графиком */
+.academic-mini-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+}
+
+.mini-stat-box {
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    padding: 12px 8px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mini-stat-val { font-size: 1.2rem; font-weight: 800; color: var(--text-main); }
+.mini-stat-lbl { font-size: 0.7rem; color: var(--text-muted); font-weight: 500; }
+
+/* Достижения (Achievements) */
+.achievements-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #111;
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 8px;
+}
+
+.achievement-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+.icon-gold { background-color: rgba(241, 196, 15, 0.1); border: 1px solid rgba(241, 196, 15, 0.2); }
+.icon-purple { background-color: rgba(155, 89, 182, 0.1); border: 1px solid rgba(155, 89, 182, 0.2); }
+.icon-emerald { background-color: rgba(46, 204, 113, 0.1); border: 1px solid rgba(46, 204, 113, 0.2); }
+
+.achievement-info { flex: 1; }
+.achievement-name { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
+.achievement-desc { font-size: 0.75rem; color: var(--text-muted); }
+.achievement-date { font-size: 0.75rem; color: var(--text-muted); }
+
+.view-all-btn {
+    background: #111;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+.view-all-btn:hover { background-color: #161616; }
+
+/* Activity Summary */
+.activity-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.activity-box {
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.activity-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.activity-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+.bg-green-opacity { background: rgba(46, 204, 113, 0.1); }
+.bg-blue-opacity { background: rgba(52, 152, 219, 0.1); }
+.bg-purple { background: purple }
+.bg-orange-opacity { background: rgba(230, 126, 34, 0.1); }
+
+.activity-meta { display: flex; flex-direction: column; }
+.activity-lbl { font-size: 0.75rem; color: var(--text-muted); }
+.activity-val { font-size: 1.1rem; font-weight: 800; color: var(--text-main); }
+.trend-spark { font-size: 0.75rem; font-weight: 600; }
+
+/* Сайдбар блоки */
+.sidebar-block-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.about-text, .settings-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Скиллы (Индикаторы прогресса) */
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+.skill-info span:last-child { color: var(--text-main); }
+
+.skill-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #111;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    border-radius: 3px;
+}
+
+/* Ссылки контактов в сайдбаре */
+.sidebar-contact-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.profile-link {
+    color: #3498db;
+    text-decoration: none;
+}
+.profile-link:hover { text-decoration: underline; }
+
+/* Кнопка настроек */
+.settings-action-btn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background-color 0.2s;
+}
+.settings-action-btn:hover { background-color: #111; }
+
+/* Вспомогательные классы */
+.margin-top-16 { margin-top: 16px; }
+
+/* Адаптивный дизайн */
+@media (max-width: 1200px) {
+    .profile-page-layout { grid-template-columns: 1fr; }
+    .student-main-info { grid-template-columns: auto 1fr; }
+    .student-academic-details { border-left: none; padding-left: 0; border-top: 1px solid var(--border-color); padding-top: 20px; grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .profile-middle-grid, .activity-summary-grid { grid-template-columns: 1fr; }
+    .academic-mini-stats { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,558 @@
+:root {
+    --bg-color: #0d0d0d;
+    --text-color: #e5e5e5;
+    --blue: #1e90ff;
+    --border-color: #262626;
+
+    --font-family: Unbounded, sans-serif;
+
+    --border: 1px solid var(--border-color);
+    --border-radius: 5px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-areas: 'sidebar header header'
+        'sidebar main main';
+    grid-template-columns: 250px 1fr 1fr;
+    ;
+}
+
+.topbar {
+    grid-area: header;
+    background-color: var(--bg-color);
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: var(--border);
+
+    .header__search-wrapper input {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        border: var(--border);
+        border-radius: var(--border-radius);
+        padding: 10px;
+    }
+
+    .header__actions-wrapper {
+        display: flex;
+        gap: 10px;
+
+        .action-btn {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 50%;
+            color: var(--text-color);
+            background-color: var(--border-color);
+            cursor: pointer;
+        }
+    }
+}
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    background-color: var(--bg-color);
+    padding: 20px;
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        padding: 10px;
+        border: var(--border);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: var(--border-color);
+        transition: .2s ease;
+    }
+}
+
+.main {
+    grid-area: main;
+    background-color: var(--bg-color);
+    padding: 20px;
+    border: var(--border);
+}
+
+.tab-section h1 {
+    margin-bottom: 20px;
+}
+
+.stats-wrapper {
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+}
+
+/* Общий стиль карточки */
+.dashboard-card {
+    background-color: #141414;
+    /* Темная подложка, чуть светлее фона */
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+    border-color: #333333;
+    transform: translateY(-2px);
+    /* Легкий интерактивный подъем */
+}
+
+/* Верхняя часть карточки (Заголовок + Иконка) */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #636366;
+    /* Приглушенный серый для подписей */
+}
+
+.card-icon {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* Главное числовое значение */
+.card-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    letter-spacing: -0.03em;
+}
+
+/* Стилизация разделителя для кредитов (опционально, для красоты) */
+.card-value-divider {
+    color: var(--blue);
+    /* Используем твой синий акцент */
+    margin: 0 4px;
+    font-weight: 400;
+}
+
+/* Адаптивность для планшетов и мобильных устройств */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2х2 на планшетах */
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        /* 1 колонка на смартфонах */
+        gap: 12px;
+    }
+}
+
+/* Главный контейнер для колонок */
+.overview-columns {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    /* Левая колонка чуть шире правой */
+    gap: 24px;
+    align-items: start;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding: 16px;
+}
+
+/* Левая колонка (Уроки + График) */
+.overview-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* Отступ между блоком уроков и графиком */
+}
+
+/* Общий стиль для всех карточек-оберток */
+.lessons-list-wrapper,
+.diagram-wrapper,
+.todo-wrapper {
+    background-color: #141414;
+    /* Чуть светлее основного фона для объема */
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 20px;
+}
+
+/* Стилизация заголовков (h3) внутри блоков */
+.overview-columns h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    /* Делаем заголовки ярче основного текста */
+
+    /* Опционально: небольшой синий акцентный штрих слева от заголовка */
+    border-left: 3px solid var(--blue);
+    padding-left: 10px;
+}
+
+/* Список уроков (ul) */
+.lessons-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Отступы между будущими элементами <li> */
+}
+
+.empty-schedule,
+.empty-task-list {
+    text-align: center;
+    color: #636366;
+    font-size: 0.9rem;
+    padding: 20px 0;
+}
+
+/* Заглушка под график/диаграмму */
+.diagram-wrapper {
+    height: 250px;
+    /* Задаем базовую высоту для контейнера графиков */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Правая колонка (Задачи) */
+.overview-right {
+    position: sticky;
+    top: 20px;
+    /* Если страница длинная, блок задач будет красиво залипать при скролле */
+}
+
+/* Адаптивность: на планшетах и мобилках перестраиваем в одну колонку */
+@media (max-width: 992px) {
+    .overview-columns {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .overview-right {
+        position: static;
+    }
+}
+
+/* Элемент списка (li) */
+.schedule-item {
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    background-color: #1a1a1a;
+    /* Темный благородный фон */
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.schedule-item:hover {
+    background-color: #222222;
+    /* Легкий эффект при наведении */
+}
+
+/* Блок с иконкой */
+.schedule-icon {
+    font-size: 1.5rem;
+    /* Корректируй под формат (эмодзи или SVG) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #262626;
+    border-radius: 6px;
+}
+
+/* Центральный блок: Название и Учитель */
+.schedule-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.schedule-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.schedule-teacher {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #8e8e93;
+    /* Приглушенный цвет для второстепенного текста */
+}
+
+/* Правый блок: Время и Кабинет */
+.schedule-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.schedule-time {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #d4af37;
+    /* Акцентный (золотой/бронзовый) оттенок для времени */
+}
+
+.schedule-room {
+    font-size: 0.8rem;
+    color: #636366;
+    background-color: #262626;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Сам список задач (ul) */
+.tasks-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Отступы между задачами */
+}
+
+/* Элемент списка (li) */
+.task-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: #1a1a1a;
+    /* В тон остальным карточкам */
+    border: var(--border);
+    border-radius: var(--border-radius);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+
+    max-height: 100px;
+    /* Заведомо больше, чем высота одной карточки */
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        max-height 0.3s ease 0.1s,
+        /* Задержка, чтобы высота схлопывалась чуть позже */
+        padding 0.3s ease 0.1s,
+        margin 0.3s ease 0.1s,
+        border-color 0.2s ease;
+    /* Для ховера */
+
+    overflow: hidden;
+    /* Чтобы контент не вылезал при схлопывании высоты */
+}
+
+.task-item:hover {
+    background-color: #222222;
+    border-color: #333333;
+}
+
+.task-item.is-removing {
+    opacity: 0;
+    transform: translateX(-20px);
+    /* Слегка сдвигаем влево для красоты */
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+/* Кастомный чекбокс (кнопка) */
+.task-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #444444;
+    border-radius: 4px;
+    /* Квадратный с легким скруглением в стиле Unbounded */
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+/* Эффект при наведении на чекбокс */
+.task-checkbox:hover {
+    border-color: var(--blue);
+    background-color: rgba(30, 144, 255, 0.1);
+}
+
+/* Контент: Название и Дата */
+.task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-title {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+.task-date {
+    font-size: 0.75rem;
+    color: #636366;
+    /* Приглушенный серый */
+}
+
+/* Общий стиль для бэйджей приоритета */
+.task-badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+/* Цвета для разных приоритетов */
+.task-badge.priority-high {
+    background-color: rgba(255, 69, 58, 0.1);
+    /* Темно-красный полупрозрачный */
+    color: #ff453a;
+    border: 1px solid rgba(255, 69, 58, 0.2);
+}
+
+.task-badge.priority-medium {
+    background-color: rgba(255, 159, 10, 0.1);
+    /* Оранжевый */
+    color: #ff9f0a;
+    border: 1px solid rgba(255, 159, 10, 0.2);
+}
+
+.task-badge.priority-low {
+    background-color: rgba(48, 209, 88, 0.1);
+    /* Зеленый */
+    color: #30d158;
+    border: 1px solid rgba(48, 209, 88, 0.2);
+}
+
+/* Контейнер для всех колонок (нужно добавить к родительскому элементу, например, к .diagram-wrapper) */
+.diagram-wrapper {
+  /* ... твои предыдущие стили для карточки ... */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+
+/* Обертка чисто для графика, которую нужно поместить внутрь карточки под h3 */
+.chart-container {
+  display: flex;
+  align-items: flex-end; /* Выравнивает столбики по нижней линии */
+  justify-content: space-around; /* Равномерно распределяет колонки */
+  height: 220px; /* Фиксированная высота рабочей зоны графика */
+  padding-top: 20px;
+  margin-top: auto; /* Прижимает график к низу карточки, если заголовок h3 сверху */
+}
+
+/* Отдельная колонка со столбиком и подписями */
+.bar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1; /* Колонки будут делить место поровну */
+  max-width: 60px; /* Чтобы столбики не были слишком широкими на больших экранах */
+  height: 100%; /* Занимает всю высоту .chart-container */
+  justify-content: flex-end; /* Сдвигает все элементы к нижней границе */
+}
+
+/* Сам столбик (Bar) */
+.bar {
+  width: 100%;
+  max-width: 48px; /* Толщина столбика */
+  border-radius: 4px 4px 0 0; /* Скругление только сверху в стиле Unbounded */
+  background-color: var(--blue); /* Цвет по умолчанию, если subject.color не прилетит */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.2s ease;
+  cursor: pointer;
+}
+
+/* Интерактивный эффект при наведении на столбик */
+.bar:hover {
+  filter: brightness(1.2); /* Делает цвет столбика чуть ярче */
+  transform: scaleY(1.02); /* Легкое вытягивание вверх */
+}
+
+/* Оценка (число над или под столбиком). Сделаем её всплывающей или аккуратно сидящей сверху */
+.bar-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 6px; /* Отступ от верхушки столбика */
+  order: -1; /* Вагический трюк Flexbox: заставляет span.bar-value встать НАД столбиком в верстке */
+}
+
+/* Название предмета (снизу под графиком) */
+.bar-label {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #636366; /* Приглушенный серый */
+  margin-top: 8px; /* Отступ от низа столбика */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Если название слишком длинное, оно аккуратно обрежется (...) */
+  max-width: 100%;
+}

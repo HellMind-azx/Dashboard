@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- HEADER -->
+
+        <header class="topbar" id="header">
+            <div class="header__search-wrapper">
+                <input type="search" placeholder="Write something..." autocomplete="off">
+            </div>
+            <div class="header__actions-wrapper">
+                <button class="notification action-btn" id="notification">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- SIDEBAR NAVIGATION -->
+
+        <aside class="sidebar" id="sidebar">
+            <!-- The tabs will come from the state as data. -->
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main" id="main">
+
+            <!-- TAB: OVERVIEW (активен по умолчанию) -->
+            <section class="tab-section" id="tab-overview" data-tab="overview">
+                <h1>Overview</h1>
+                <div class="stats-wrapper" id="stats-wrapper"></div>
+
+                <div class="overview-columns">
+                    <div class="overview-left">
+                        <div class="lessons-list-wrapper">
+                            <h3>Upcoming Lessons</h3>
+                            <ul class="lessons-list" id="lessons-list"></ul>
+                        </div>
+                        <div class="diagram-wrapper" id="diagram">
+                            <h3>Grades Overview</h3>
+                        </div>
+                    </div>
+
+                    <div class="overview-right">
+                        <div class="todo-wrapper" id="todo-list">
+                            <h3>Tasks</h3>
+                            <ul class="tasks-list" id="tasks-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: GRADES -->
+            <section class="tab-section" id="tab-grades" data-tab="grades" hidden>
+                <h1 class="page-title">Grades</h1>
+
+                <div class="grades-stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">CURRENT GPA</span>
+                            <span class="stat-icon icon-gpa">⚡</span>
+                        </div>
+                        <div class="stat-value" id="current-gpa">3.82</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">TOTAL CREDITS</span>
+                            <span class="stat-icon icon-credits">💎</span>
+                        </div>
+                        <div class="stat-value"><span id="earned-credits">72</span><span class="stat-max">/120</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">ACADEMIC STATUS</span>
+                            <span class="stat-icon icon-status">🛡️</span>
+                        </div>
+                        <div class="stat-value status-good" id="academic-status">Good Standing</div>
+                    </div>
+                </div>
+
+                <div class="grades-content-layout">
+
+                    <div class="grades-card table-container">
+                        <h3 class="card-title">Subject Breakdown</h3>
+                        <div class="table-responsive">
+                            <table class="grades-table" id="grades-table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Room</th>
+                                        <th>Grade</th>
+                                        <th>Percentage</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="grades-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- TAB: SCHEDULE -->
+            <section class="tab-section" id="tab-schedule" data-tab="schedule" hidden>
+                <h1>Schedule</h1>
+
+                <div class="schedule-wrapper">
+                    <div class="schedule-left-column">
+
+                    </div>
+                    <div class="schedule-right-column">
+                        <div class="subject-list-wrapper"></div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: TASKS -->
+            <section class="tab-section" id="tab-tasks" data-tab="tasks" hidden>
+                <h1 class="page-title">Tasks</h1>
+
+                <div class="tasks-page-layout">
+
+                    <div class="tasks-main-content">
+
+                        <div class="tasks-stats-grid">
+                            <div class="task-stat-card border-blue">
+                                <div class="task-stat-icon">📅</div>
+                                <div class="task-stat-info">
+                                    <span class="task-stat-label">Total Tasks</span>
+                                    <div class="task-stat-value" id="total-tasks-count"></div>
+                                    <span class="task-stat-sub">All assigned tasks</span>
+                                </div>
+                            </div>
+                            <div class="task-stat-card border-green">
+                                <div class="task-stat-icon">✅</div>
+                                <div class="task-stat-info">
+                                    <span class="task-stat-label">Completed</span>
+                                    <div class="task-stat-value" id="completed-tasks-count"></div>
+                                    <span class="task-stat-sub text-green"></span>
+                                </div>
+                            </div>
+                            <div class="task-stat-card border-orange">
+                                <div class="task-stat-icon">🕒</div>
+                                <div class="task-stat-info">
+                                    <span class="task-stat-label">In Progress</span>
+                                    <div class="task-stat-value" id="progress-tasks-count"></div>
+                                    <span class="task-stat-sub text-orange"></span>
+                                </div>
+                            </div>
+                            <div class="task-stat-card border-red">
+                                <div class="task-stat-icon">📅</div>
+                                <div class="task-stat-info">
+                                    <span class="task-stat-label">Upcoming</span>
+                                    <div class="task-stat-value" id="upcoming-tasks-count"></div>
+                                    <span class="task-stat-sub text-red">Due later</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tasks-table-wrapper">
+
+                            <div class="tasks-toolbar">
+                                <div class="tasks-tabs" id="tasks-tabs">
+                                    <button class="task-tab-btn active" data-filter="all">All Tasks</button>
+                                    <button class="task-tab-btn" data-filter="todo">To Do</button>
+                                    <button class="task-tab-btn" data-filter="progress">In Progress</button>
+                                    <button class="task-tab-btn" data-filter="completed">Completed</button>
+                                </div>
+                                <div class="tasks-actions">
+                                    <div class="search-box">
+                                        <span class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z"
+                                                    stroke="currentColor" stroke-width="2" />
+
+                                                <path d="M16 16L21 21" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" />
+                                            </svg></span>
+                                        <input type="search" id="task-search-input" placeholder="Search tasks...">
+                                    </div>
+                                    <button class="filter-btn" id="task-filter-btn">
+                                        <span class="filter-icon">⚡</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="tasks-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Task</th>
+                                            <th>Course</th>
+                                            <th>Due Date</th>
+                                            <th>Priority</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tasks-table-body" id="tasks-table-body">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tasks-sidebar">
+
+                        <div class="sidebar-card">
+                            <h3 class="sidebar-card-title">Upcoming Deadlines</h3>
+                            <div class="deadlines-list" id="upcoming-deadlines-list">
+                                <div class="deadline-item">
+                                    <div class="deadline-calendar">
+                                        <span class="cal-month">JUL</span>
+                                        <span class="cal-day">02</span>
+                                    </div>
+                                    <div class="deadline-info">
+                                        <h4 class="deadline-title">JavaScript Variables and Data Types</h4>
+                                        <span class="deadline-course">JavaScript Fundamentals</span>
+                                        <span class="deadline-status text-red">2 days left</span>
+                                    </div>
+                                </div>
+                                <div class="deadline-item">
+                                    <div class="deadline-calendar">
+                                        <span class="cal-month">JUL</span>
+                                        <span class="cal-day">04</span>
+                                    </div>
+                                    <div class="deadline-info">
+                                        <h4 class="deadline-title">React Component Lifecycle</h4>
+                                        <span class="deadline-course">React</span>
+                                        <span class="deadline-status text-red">4 days left</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-card">
+                            <h3 class="sidebar-card-title">Task Progress</h3>
+                            <div class="progress-chart-container">
+                                <div class="chart-box" id="progress-pie-chart">
+                                    <div class="mock-pie"></div>
+                                </div>
+                                <div class="chart-legend">
+                                    <div class="legend-item"><span class="dot bg-blue"></span> To Do <span
+                                            class="leg-val">33.3% (6)</span></div>
+                                    <div class="legend-item"><span class="dot bg-orange"></span> In Progress <span
+                                            class="leg-val">27.8% (5)</span></div>
+                                    <div class="legend-item"><span class="dot bg-green"></span> Completed <span
+                                            class="leg-val">38.9% (7)</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-card tips-card">
+                            <h3 class="sidebar-card-title">💡 Tips</h3>
+                            <p class="tips-text">Break tasks into smaller steps and set priorities to stay on track!</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- TAB: PROFILE -->
+            <section class="tab-section" id="tab-profile" data-tab="profile" hidden>
+                <div class="profile-header-row">
+                    <div class="profile-title-block">
+                        <h1 class="page-title">Profile</h1>
+                        <p class="page-subtitle">Manage your account and view your academic overview.</p>
+                    </div>
+                    <button class="edit-profile-btn" id="edit-profile-trigger">
+                        <span><i class="fa-solid fa-pen-to-square"></i></span> Edit Profile
+                    </button>
+                </div>
+
+                <div class="profile-page-layout">
+
+                    <div class="profile-main-content">
+
+                        <div class="profile-card student-main-info" id="profile-card">
+                        </div>
+
+                        <div class="profile-middle-grid">
+
+                            <div class="profile-card">
+                                <h3 class="card-section-title text-blue-line">Academic Overview</h3>
+                                <div class="academic-overview-content">
+                                    <div class="gpa-chart-wrapper">
+                                        <div class="gpa-donut-chart">
+                                            <div class="gpa-chart-center">
+                                                <span class="gpa-num">3.82</span>
+                                                <span class="gpa-lbl">GPA</span>
+                                            </div>
+                                        </div>
+                                        <div class="gpa-legend">
+                                            <div class="gpa-leg-item"><span class="dot bg-green"></span> A (90-100)
+                                                <span class="gpa-leg-val">12</span>
+                                            </div>
+                                            <div class="gpa-leg-item"><span class="dot bg-blue"></span> B (80-89) <span
+                                                    class="gpa-leg-val">8</span></div>
+                                            <div class="gpa-leg-item"><span class="dot bg-orange"></span> C (70-79)
+                                                <span class="gpa-leg-val">3</span>
+                                            </div>
+                                            <div class="gpa-leg-item"><span class="dot bg-yellow"></span> D (60-69)
+                                                <span class="gpa-leg-val">1</span>
+                                            </div>
+                                            <div class="gpa-leg-item"><span class="dot bg-red"></span> F (0-59) <span
+                                                    class="gpa-leg-val">0</span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="academic-mini-stats">
+                                        <div class="mini-stat-box">
+                                            <span class="mini-stat-val">72</span>
+                                            <span class="mini-stat-lbl">Total Credits</span>
+                                        </div>
+                                        <div class="mini-stat-box">
+                                            <span class="mini-stat-val">18</span>
+                                            <span class="mini-stat-lbl">Completed</span>
+                                        </div>
+                                        <div class="mini-stat-box">
+                                            <span class="mini-stat-val">5</span>
+                                            <span class="mini-stat-lbl">In Progress</span>
+                                        </div>
+                                        <div class="mini-stat-box">
+                                            <span class="mini-stat-val">4</span>
+                                            <span class="mini-stat-lbl">Remaining</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card achievements-card">
+                                <h3 class="card-section-title text-green-line">Recent Achievements</h3>
+                                <div class="achievements-list" id="achievements-container">
+                                    <div class="achievement-item">
+                                        <div class="achievement-icon icon-gold"><i class="fa-solid fa-award"></i></div>
+                                        <div class="achievement-info">
+                                            <h4 class="achievement-name">Dean's List</h4>
+                                            <span class="achievement-desc">Spring 2026 Semester</span>
+                                        </div>
+                                        <span class="achievement-date">Apr 25, 2026</span>
+                                    </div>
+                                    <div class="achievement-item">
+                                        <div class="achievement-icon icon-purple"><i class="fa-solid fa-star"></i></div>
+                                        <div class="achievement-info">
+                                            <h4 class="achievement-name">Top Performer</h4>
+                                            <span class="achievement-desc">Data Structures Course</span>
+                                        </div>
+                                        <span class="achievement-date">Mar 15, 2026</span>
+                                    </div>
+                                    <div class="achievement-item">
+                                        <div class="achievement-icon icon-emerald"><i
+                                                class="fa-solid fa-shield-alt"></i></div>
+                                        <div class="achievement-info">
+                                            <h4 class="achievement-name">Hackathon Participant</h4>
+                                            <span class="achievement-desc">University Tech Fest 2026</span>
+                                        </div>
+                                        <span class="achievement-date">Feb 28, 2026</span>
+                                    </div>
+                                </div>
+                                <button class="view-all-btn">View All Achievements</button>
+                            </div>
+
+                        </div>
+
+                        <div class="profile-card">
+                            <h3 class="card-section-title text-blue-line">Activity Summary</h3>
+                            <div class="activity-summary-grid">
+                                <div class="activity-box">
+                                    <div class="activity-header">
+                                        <span class="activity-icon-wrap bg-green-opacity"><i
+                                                class="fa-solid fa-check-circle"></i></span>
+                                        <div class="activity-meta">
+                                            <span class="activity-lbl">Tasks Completed</span>
+                                            <span class="activity-val">7</span>
+                                        </div>
+                                    </div>
+                                    <div class="mini-trend-chart"><span class="trend-spark text-green"><i
+                                                class="fa-solid fa-chart-bar"></i> +12% this
+                                            month</span></div>
+                                </div>
+                                <div class="activity-box">
+                                    <div class="activity-header">
+                                        <span class="activity-icon-wrap bg-blue-opacity"><i
+                                                class="fa-solid fa-clock"></i></span>
+                                        <div class="activity-meta">
+                                            <span class="activity-lbl">Study Hours</span>
+                                            <span class="activity-val">14h 30m</span>
+                                        </div>
+                                    </div>
+                                    <div class="mini-trend-chart"><span class="trend-spark text-blue"><i
+                                                class="fa-solid fa-chart-bar"></i> +8% this
+                                            week</span></div>
+                                </div>
+                                <div class="activity-box">
+                                    <div class="activity-header">
+                                        <span class="activity-icon-wrap bg-purple-opacity"><i
+                                                class="fa-solid fa-school"></i></span>
+                                        <div class="activity-meta">
+                                            <span class="activity-lbl">Classes Attended</span>
+                                            <span class="activity-val">6</span>
+                                        </div>
+                                    </div>
+                                    <div class="mini-trend-chart"><span class="trend-spark text-purple"><i
+                                                class="fa-solid fa-chart-bar"></i> 100% this
+                                            week</span></div>
+                                </div>
+                                <div class="activity-box">
+                                    <div class="activity-header">
+                                        <span class="activity-icon-wrap bg-orange-opacity"><i
+                                                class="fa-solid fa-file-alt"></i></span>
+                                        <div class="activity-meta">
+                                            <span class="activity-lbl">Exams Taken</span>
+                                            <span class="activity-val">2</span>
+                                        </div>
+                                    </div>
+                                    <div class="mini-trend-chart"><span class="trend-spark text-orange"><i
+                                                class="fa-solid fa-chart-bar"></i> -5% this
+                                            month</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="profile-sidebar-content">
+
+                        <div class="profile-card sidebar-padding">
+                            <h4 class="sidebar-block-title"><i class="fa-solid fa-circle-info"></i> About Me</h4>
+                            <p class="about-text">Passionate about software development, algorithms, and building
+                                impactful applications. Always learning and exploring new technologies.</p>
+                        </div>
+
+                        <div class="profile-card sidebar-padding">
+                            <h4 class="sidebar-block-title"><i class="fa-solid fa-chart-bar"></i> Skills</h4>
+                            <div class="skills-list">
+                                <div class="skill-item">
+                                    <div class="skill-info"><span>JavaScript</span><span>90%</span></div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress bg-blue" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info"><span>React</span><span>80%</span></div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress bg-purple" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info"><span>Data Structures</span><span>85%</span></div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress bg-orange" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-info"><span>Problem Solving</span><span>88%</span></div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress bg-green" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="view-all-btn margin-top-16">View All Skills</button>
+                        </div>
+
+                        <div class="profile-card sidebar-padding">
+                            <h4 class="sidebar-block-title"><i class="fa-solid fa-address-book"></i> Contact Information
+                            </h4>
+                            <ul class="sidebar-contact-links">
+                                <li><i class="fa-solid fa-at"></i> <span>john.doe@example.com</span></li>
+                                <li><i class="fa-solid fa-phone"></i> <span>+1 (555) 123-4567</span></li>
+                                <li><i class="fa-solid fa-map-marker-alt"></i> <span>New York, USA</span></li>
+                                <li><i class="fa-solid fa-link"></i> <a href="#"
+                                        class="profile-link">linkedin.com/in/johndoe</a></li>
+                                <li><i class="fa-solid fa-code"></i> <a href="#"
+                                        class="profile-link">github.com/johndoe</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="profile-card sidebar-padding">
+                            <h4 class="sidebar-block-title"><i class="fa-solid fa-cog"></i> Account Settings</h4>
+                            <p class="settings-desc">Manage your account preferences and security.</p>
+                            <button class="settings-action-btn">Account Settings</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

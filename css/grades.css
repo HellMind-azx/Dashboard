@@ -1,0 +1,184 @@
+/* Переменные для соблюдения единой палитры (подправь под свои, если нужно) */
+:root {
+    --bg-card: #0d0d0d;
+    --border-color: #1a1a1a;
+    --text-main: #ffffff;
+    --text-muted: #7a7a7a;
+    --font-primary: 'Inter', sans-serif; /* или твой текущий шрифт */
+    
+    /* Цвета статусов */
+    --color-high: #ff4a4a;
+    --color-medium: #ff9f43;
+    --color-success: #2ed573;
+    --color-accent: #00d2d3;
+}
+
+/* Заголовок страницы */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+}
+
+/* Сетка верхних аналитических карточек */
+.grades-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.stat-icon {
+    font-size: 1.1rem;
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.stat-max {
+    color: var(--text-muted);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.status-good {
+    color: var(--color-success);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* Основной лейаут контента */
+.grades-content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.grades-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 20px;
+}
+
+/* Стилизация таблицы */
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.grades-table th {
+    padding: 14px 16px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.grades-table td {
+    padding: 18px 16px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.grades-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.grades-table tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Специфичные стили для ячеек */
+.subject-name {
+    font-weight: 600;
+}
+
+.grade-letter {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+/* Баджи статусов в таблице */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.status-passed {
+    background-color: rgba(46, 213, 115, 0.1);
+    color: var(--color-success);
+    border: 1px solid rgba(46, 213, 115, 0.2);
+}
+
+.status-retake {
+    background-color: rgba(255, 74, 74, 0.1);
+    color: var(--color-high);
+    border: 1px solid rgba(255, 74, 74, 0.2);
+}
+
+/* Адаптивность для мелких экранов */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .grades-table td, .grades-table th {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+}

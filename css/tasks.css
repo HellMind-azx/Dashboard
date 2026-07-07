@@ -1,0 +1,507 @@
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.tasks-page-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
+}
+
+.tasks-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.tasks-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Верхняя сетка карточек статистики */
+.tasks-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.task-stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.task-stat-icon {
+    font-size: 1.3rem;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.task-stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.task-stat-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.task-stat-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Цветные индикаторы для верхних карточек */
+.task-stat-card.border-blue {
+    border-top: 2px solid #3498db;
+}
+
+.task-stat-card.border-green {
+    border-top: 2px solid #2ecc71;
+}
+
+.task-stat-card.border-orange {
+    border-top: 2px solid #e67e22;
+}
+
+.task-stat-card.border-red {
+    border-top: 2px solid #e74c3c;
+}
+
+/* Тулбар (Табы + Поиск) */
+.tasks-table-wrapper {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.tasks-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.tasks-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.task-tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.task-tab-btn:hover,
+.task-tab-btn.active {
+    color: var(--text-main);
+}
+
+.task-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #3498db;
+}
+
+.tasks-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 0.5rem;
+    color: var(--text-muted);
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+#task-search-input {
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 12px 8px 36px;
+    color: var(--text-main);
+    font-size: 0.85rem;
+    width: 200px;
+    transition: border-color 0.2s;
+}
+
+#task-search-input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.filter-btn {
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+/* Таблица задач */
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tasks-table th {
+    padding: 14px 16px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tasks-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+    font-size: 0.9rem;
+}
+
+.task-cell-title {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.task-cell-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.empty-task-table {
+    text-align: center;
+    padding: 20px 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.days-left {
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+/* Баджи Приоритетов */
+.priority-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.p-high {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.p-medium {
+    background-color: rgba(230, 126, 34, 0.1);
+    color: #e67e22;
+    border: 1px solid rgba(230, 126, 34, 0.2);
+}
+
+.p-low {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+/* Баджи Статусов */
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.s-todo {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+}
+
+.s-in-progress {
+    background-color: rgba(230, 126, 34, 0.1);
+    color: #e67e22;
+}
+
+.s-upcoming {
+    background-color: rgba(204, 46, 99, 0.1);
+    color: #cc2e43;
+}
+
+.s-completed {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+}
+
+/* Правая колонка (Sidebar) */
+.sidebar-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.sidebar-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 18px;
+    padding-left: 8px;
+    border-left: 3px solid #3498db;
+}
+
+/* Элементы списка дедлайнов */
+.deadlines-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.deadline-item {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    background: #111;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.deadline-calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #161616;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    min-width: 48px;
+    height: 48px;
+}
+
+.cal-month {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.cal-day {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-weight: 800;
+}
+
+.deadline-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.deadline-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.deadline-course {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.deadline-status {
+    font-size: 0.75rem;
+}
+
+/* Блок Прогресса & Диаграмма */
+.progress-chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.chart-box {
+    width: 90px;
+    height: 90px;
+    position: relative;
+}
+
+/* Временный круг-заглушка (пока не подключен JS/Canvas/SVG-круг) */
+.mock-pie {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(#3498db 0% 33.3%, #e67e22 33.3% 71.1%, #2ecc71 71.1% 100%);
+    mask: radial-gradient(transparent 55%, #000 56%);
+    -webkit-mask: radial-gradient(transparent 55%, #000 56%);
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.legend-item {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.leg-val {
+    color: var(--text-main);
+    margin-left: auto;
+    font-weight: 600;
+}
+
+/* Цвета для текста и точек */
+.text-blue {
+    color: #3498db;
+}
+
+.text-green {
+    color: #2ecc71;
+}
+
+.text-orange {
+    color: #e67e22;
+}
+
+.text-red {
+    color: #e74c3c;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.bg-blue {
+    background-color: #3498db;
+}
+
+.bg-orange {
+    background-color: #e67e22;
+}
+
+.bg-green {
+    background-color: #2ecc71;
+}
+
+.tips-card {
+    background: linear-gradient(145deg, #0d0d0d, #141414);
+}
+
+.tips-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .tasks-page-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .tasks-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tasks-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tasks-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tasks-actions {
+        width: 100%;
+    }
+
+    #task-search-input {
+        width: 100%;
+    }
+}

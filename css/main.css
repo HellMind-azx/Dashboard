@@ -1,0 +1,24 @@
+@import "./overview.css";
+@import "./grades.css";
+@import "./schedule.css";
+@import "./tasks.css";
+@import "./profile.css";
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
