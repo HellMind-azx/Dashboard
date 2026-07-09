@@ -16,6 +16,77 @@
 
 <body>
 
+    <div id="auth-container" hidden>
+        <div class="auth-box-wrapper">
+
+            <div class="auth-card" id="auth-login">
+                <div class="auth-header">
+                    <h2 class="auth-title">Welcome Back</h2>
+                    <p class="auth-subtitle">Please enter your details to sign in</p>
+                </div>
+
+                <form id="login-form" onsubmit="event.preventDefault();">
+                    <div class="input-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="auth-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="login-remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="auth-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Sign In</button>
+                </form>
+
+                <div class="auth-footer">
+                    <span>Don't have an account?</span>
+                    <button class="auth-switch-btn" id="to-register-btn">Sign up for free</button>
+                </div>
+            </div>
+
+            <div class="auth-card" id="auth-register" hidden>
+                <div class="auth-header">
+                    <h2 class="auth-title">Create Account</h2>
+                    <p class="auth-subtitle">Get started with your academic dashboard</p>
+                </div>
+
+                <form id="register-form" onsubmit="event.preventDefault();">
+                    <div class="input-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="register-email">Email Address</label>
+                        <input type="email" id="register-email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn">Create Account</button>
+                </form>
+
+                <div class="auth-footer">
+                    <span>Already have an account?</span>
+                    <button class="auth-switch-btn" id="to-login-btn">Log in</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div class="dashboard">
 
         <!-- HEADER -->
