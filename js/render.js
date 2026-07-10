@@ -2,6 +2,8 @@ const tabs = document.querySelectorAll('.tab-section');
 const filterBtns = document.querySelectorAll('.task-tab-btn');
 const legendValues = document.querySelectorAll('.leg-val');
 const sidebar = document.getElementById('sidebar');
+const mainTabsContainer = document.getElementById('main-tabs');
+const utilityTabsContainer = document.getElementById('utility-tabs');
 const tasksList = document.getElementById('tasks-list');
 const tasksTabs = document.getElementById('tasks-tabs');
 const taskSearchInput = document.getElementById('task-search-input');
@@ -17,23 +19,38 @@ function renderActiveTab() {
 }
 
 function renderSidebar(tabs) {
-  const tabsBtns = tabs.map(tab => `
+  const mainTabs = tabs.map(tab => `
         <button class="tab-btn" data-tab="${tab.id}">
             <i class="${tab.icon}"></i>
             <span>${tab.label}</span>
         </button>
-        `).join('');
+        `).slice(0, 5).join('');
 
-  sidebar.innerHTML = `
+  mainTabsContainer.innerHTML = `
     <button class="sidebar-toggle-btn" type="button" aria-label="Toggle sidebar">
         <i class="fa-solid fa-bars"></i>
     </button>
 
     <div class="sidebar-nav">
-        ${tabsBtns}
+        ${mainTabs}
     </div>
   `;
 }
+
+function renderSidebarFooterTabs(tabs) {
+  const utilityTabs = tabs.map(tab => `
+        <button class="tab-btn" data-tab="${tab.id}">
+            <i class="${tab.icon}"></i>
+            <span>${tab.label}</span>
+        </button>
+        `).slice(5).join('');
+
+        utilityTabsContainer.innerHTML = `
+        <div class="sidebar-footer">
+            ${utilityTabs}
+        </div>
+    `;
+} 
 
 function renderLessons() {
   const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -173,6 +190,12 @@ function getFilteredTasks() {
   const filter = state.activeFilter || 'all';
   const searchQuery = (state.searchQuery || '').trim().toLowerCase();
 
+  const status = {
+    todo: "todo",
+    inProgress: "in-progress",
+    completed: "completed"
+  }
+  
   switch (filter) {
     case 'todo':
       tasks = COURSES.filter(course => course.status === status.todo);

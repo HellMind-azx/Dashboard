@@ -3,7 +3,9 @@ const TABS = [
     { id: "grades", label: "Grades", icon: "fa-solid fa-chart-column" },
     { id: "schedule", label: "Schedule", icon: "fa-solid fa-calendar-days" },
     { id: "tasks", label: "Tasks", icon: "fa-solid fa-list-check" },
-    { id: "profile", label: "Profile", icon: "fa-solid fa-user" }
+    { id: "profile", label: "Profile", icon: "fa-solid fa-user" },
+    { id: "settings", label: "Settings", icon: "fa-solid fa-gear" },
+    { id: "logout", label: "Log out", icon: "fa-solid fa-sign-out-alt" }
 ];
 
 const ICONS = [

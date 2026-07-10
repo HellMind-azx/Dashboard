@@ -16,7 +16,7 @@
 
 <body>
 
-    <div id="auth-container" hidden>
+    <div id="auth-container">
         <div class="auth-box-wrapper">
 
             <div class="auth-card" id="auth-login">
@@ -44,7 +44,7 @@
                         <a href="#" class="auth-link">Forgot password?</a>
                     </div>
 
-                    <button type="submit" class="auth-submit-btn">Sign In</button>
+                    <button type="submit" class="auth-submit-btn" id="auth-submit-btn">Sign In</button>
                 </form>
 
                 <div class="auth-footer">
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <div class="dashboard">
+    <div class="dashboard" id="dashboard">
 
         <!-- HEADER -->
 
@@ -106,6 +106,8 @@
 
         <aside class="sidebar" id="sidebar">
             <!-- The tabs will come from the state as data. -->
+            <div class="main-tabs" id="main-tabs"></div>
+            <div class="utility-tabs" id="utility-tabs"></div>
         </aside>
 
         <!-- MAIN CONTENT -->

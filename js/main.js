@@ -27,6 +27,7 @@ function toggleSidebar() {
 }
 
 renderSidebar(TABS);
+renderSidebarFooterTabs(TABS);
 renderActiveTab();
 renderLessons();
 renderTasks();
